@@ -1,0 +1,43 @@
+name: content-web
+
+on: 
+  push: 
+    branches: 
+    - master
+    paths: 
+    - 'content-web/**'
+
+
+  workflow_dispatch: 
+    inputs: 
+      logLevel:
+        description: 'Log Level' 
+        required: true
+        default: 'warning'
+     
+   
+  env: 
+    imageRepository: 'content-web'
+    resourceGroup: 'faso-mcw-rg'
+    containerRegistryName: 'fabmedicalfas'
+    containerRegistry: 'fabmedicalfas.azurecr.io'
+    dockerfile: './conten-web'
+    tag: '${{ github.run_id }}'
+  
+  jobs:
+    build:-and-publish-docker-image: 
+      name: Build and Push Docker Image
+      runs-on: ubuntu-latest 
+      steps: 
+      - uses: actions/checkout@master 
+      - name: Build and push an image to container registry
+        uses: docker/build-push-action@v1
+        with: 
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+          path: ${{ env.dockerfilePath }}
+          dockerfile: '${{ env.dockerfilePath }}/Dockerfile'
+          registry: ${{ env.containerRegistry }}
+          repository: ${{ env.imageRepository }}
+          tags: ${{ env.tag }},latest
+
