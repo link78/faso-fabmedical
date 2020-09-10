@@ -18,7 +18,7 @@ on:
    
 env: 
   imageRepository: 'content-web'
-  resourceGroup: 'faso-mcw-rg'
+  resourceGroupName: 'faso-mcw-rg'
   containerRegistryName: 'fabmedicalfas'
   containerRegistry: 'fabmedicalfas.azurecr.io'
   dockerfile: './content-web'
