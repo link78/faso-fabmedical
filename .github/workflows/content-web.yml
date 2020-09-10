@@ -26,7 +26,7 @@ env:
   
   
 jobs:
-  build:-and-publish-docker-image: 
+  build-and-publish-docker-image: 
     name: Build and Push Docker Image
     runs-on: ubuntu-latest 
     steps: 
