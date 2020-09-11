@@ -34,8 +34,8 @@ jobs:
     - name: Build and push an image to container registry
       uses: docker/build-push-action@v2
       with: 
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
+        username: "fabmedicalfas"
+        password: "yk51X4WALa0qYnSzqqUK/Ai9BkyRKT7d"
         path: ${{ env.dockerfilePath }}
         dockerfile: '${{ env.dockerfilePath }}/Dockerfile'
         registry: ${{ env.containerRegistry }}
